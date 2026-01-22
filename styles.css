@@ -1,0 +1,66 @@
+/* Archivo de estilos principal */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+body {
+  
+  background-color: #010101;
+
+  color: #ffffff;
+  margin: 0;
+  
+}
+
+header {
+    background-size: cover;
+    background-image: url("imagen/fondo\ he.webp");
+     background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  text-align: center;
+  padding: 1rem 0;
+  min-height: max-content;
+  height: 100vh;
+}
+
+h1, h2, h3, p {
+  margin: 0 0 0.5rem 0;
+}
+
+
+.btn-cart-float {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #25D366;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: none; /* Se activa con JS */
+            border: none;
+            font-weight: bold;
+        }
+
+        .btn-add { background-color: #ee9b00; color: white; border-radius: 10px; font-weight: 600; border: none; }
+        .btn-add:hover { background-color: #ca8300; color: white; }
+      
+
+.lami {
+    width: 50vh;  /* Cambia esto al ancho que desees */
+    height: auto;  /* Mantiene la proporción */
+}
+
+/* Estilo para la imagen dentro del contenedor */
+.lami img {
+    width: 100%;   /* La imagen ocupará todo el ancho del div */
+    height: auto;  /* Evita que la imagen se deforme */
+    display: block;
+}

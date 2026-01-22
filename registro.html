@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Club de Puntos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body { background-color: #121212; color: #eee; font-family: 'Segoe UI', sans-serif; }
+        .register-card { 
+            background: #1e1e1e; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            padding: 30px; 
+            border: 1px solid #333;
+        }
+        .form-control { 
+            background-color: #2b2b2b; 
+            border: 1px solid #444; 
+            color: white; 
+        }
+        .form-control:focus { 
+            background-color: #333; 
+            border-color: #ee9b00; 
+            color: white; 
+            box-shadow: none; 
+        }
+        .btn-register { 
+            background-color: #ee9b00; 
+            color: white; 
+            border: none; 
+            font-weight: bold; 
+            padding: 12px; 
+            transition: 0.3s;
+        }
+        .btn-register:hover { background-color: #ca8300; transform: translateY(-2px); }
+        .text-naranja { color: #ee9b00; }
+    </style>
+</head>
+<body>
+
+    <div class="container py-5" style="max-width: 450px;">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-white">Únete al Club</h2>
+            <p class="text-muted">Regístrate y recibe <span class="text-naranja fw-bold">50 puntos gratis</span> 🎁</p>
+        </div>
+
+        <div class="register-card">
+            <div class="mb-3">
+                <label class="form-label small fw-bold text-secondary text-uppercase">Nombre Completo</label>
+                <input type="text" id="regNombre" class="form-control" placeholder="Ej: Juan Pérez">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label small fw-bold text-secondary text-uppercase">Correo Electrónico</label>
+                <input type="email" id="regEmail" class="form-control" placeholder="ejemplo@correo.com">
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label small fw-bold text-secondary text-uppercase">WhatsApp / Teléfono</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-dark border-secondary text-white"><i class="bi bi-whatsapp"></i></span>
+                    <input type="tel" id="regTel" class="form-control" placeholder="Ej: 04121234567">
+                </div>
+            </div>
+
+            <button class="btn btn-register w-100 shadow-sm" onclick="registrarCliente()">
+                CREAR MI CUENTA
+            </button>
+        </div>
+
+        <div id="statusRegistro" class="mt-4 text-center"></div>
+
+        <div class="text-center mt-4">
+            <a href="index.html" class="text-decoration-none text-muted small">
+                <i class="bi bi-arrow-left"></i> Volver al Menú
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // PEGA AQUÍ TU URL DE GOOGLE (La de la implementación /exec)
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyQ-UWf10nWhms8xJcXoQpTzvsUWsdUSsqA0-_wbO_YxhrarBL3aVjb-Glu57vUs-0Eng/exec'; // <--- PEGA TU URL DE GOOGLE AQUÍ
+
+        async function registrarCliente() {
+            const nombre = document.getElementById('regNombre').value;
+            const email = document.getElementById('regEmail').value;
+            const telefono = document.getElementById('regTel').value;
+            const status = document.getElementById('statusRegistro');
+
+            // Validación básica
+            if (!nombre || !email || !telefono) {
+                alert("Por favor, completa todos los campos.");
+                return;
+            }
+
+            status.innerHTML = '<div class="spinner-border spinner-border-sm text-warning"></div> Procesando registro...';
+
+            try {
+                // Enviamos los datos al Código Maestro (doPost)
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify({
+                        accion: "registrar",
+                        nombre: nombre,
+                        email: email,
+                        telefono: telefono
+                    })
+                });
+
+                // Si llegamos aquí, el envío fue exitoso
+                status.innerHTML = `
+                    <div class="alert alert-success border-0 shadow-sm">
+                        <i class="bi bi-check-circle-fill"></i> ¡Registro Exitoso!<br>
+                        Ya puedes ver tus puntos en el menú.
+                    </div>`;
+
+                // Limpiamos los campos
+                document.getElementById('regNombre').value = "";
+                document.getElementById('regEmail').value = "";
+                document.getElementById('regTel').value = "";
+
+            } catch (error) {
+                status.innerHTML = `<div class="alert alert-danger">Error de conexión con el servidor.</div>`;
+            }
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

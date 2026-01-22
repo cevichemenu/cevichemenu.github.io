@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi Primera Página</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container py-5">
+    <header class="mb-4 text-center">
+      <img src="imagen/Recurso 1logomds.png" class="img-fluid w-50" alt="logo">
+      <div class="d-flex align-items-center justify-content-center" style="min-height: 200px;">
+  <h1 class="display-1 mb-1 fw-bold">MENÚ</h1> 
+</div>
+    </header>
+    <div class="text-center mb-5">
+    <h1 class="display-4 fw-bold">Haz tu Pedido</h1>
+    <p class="lead">Selecciona tus platos y confirma por WhatsApp</p>
+</div>
+    
+
+  <!-- Menu con pestañas -->
+  <ul class="nav nav-tabs" id="menuTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="platos-tab" data-bs-toggle="tab" data-bs-target="#platos" type="button" role="tab" aria-controls="platos" aria-selected="true">Platos Fríos</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="calientes-tab" data-bs-toggle="tab" data-bs-target="#calientes" type="button" role="tab" aria-controls="calientes" aria-selected="false">Platos Calientes</button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link disabled" id="disabled-tab" type="button" aria-disabled="true">Disabled</button>
+    </li>
+  </ul>
+
+  <!-- Contenido de las pestañas -->
+  <div class="tab-content mt-3 container" id="menuTabsContent">
+    <!-- Platos Fríos -->
+    <div class="tab-pane fade show active" id="platos" role="tabpanel" aria-labelledby="platos-tab">
+      <div class="row g-3">
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="imagen/tradia.webp" class="card-img-top" alt="Lamin 1">
+            <div class="card-body">
+              <h5 class="card-title">Ceviche Tradicional 🐟</h5>
+              <p class="card-text"> Pescado blanco fresco del día, variedad de ají criollo, cebolla moradas finamente cortadas en julianas, leche de tigra de la casa</p>
+              <label class="small fw-bold text-secondary mb-1 text-uppercase">Presentación</label>
+
+
+              <div class="mt-auto">
+                        <select class="form-select form-select-sm mb-2 price-select">
+                          <option value="10.00|Normal">Normal - $10.00</option>
+                          <option value="18.00|Familiar">Familiar - $18.00</option>
+                        </select>
+                        <button class="btn btn-add w-100" onclick="addToCart('Ceviche Tradicional', this.parentElement.querySelector('.price-select'))">
+                            Agregar al pedido
+                        </button>
+                    </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="imagen/mixto.webp" class="card-img-top" alt="Lamin 2">
+            <div class="card-body">
+              <h5 class="card-title">Ceviche Dinamita 🐟 🐙 🍤 🦑</h5>
+              <p class="card-text">Pescado blanco fresco del día, variedad de ají criollo, cebolla moradas finamente cortadas en julianas, leche de tigra de la casa</p>
+              <label class="small fw-bold text-secondary mb-1 text-uppercase">Presentación</label>
+                <div class="mt-auto">
+                        <select class="form-select form-select-sm mb-2 price-select">
+                          <option value="10.00|Normal">Normal - $10.00</option>
+                          <option value="18.00|Familiar">Familiar - $18.00</option>
+                        </select>
+                        <button class="btn btn-add w-100" onclick="addToCart('Ceviche Dinamita', this.parentElement.querySelector('.price-select'))">
+                            Agregar al pedido
+                        </button>
+                    </div>
+            
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="imagen/mixcamaron.webp" class="card-img-top" alt="Lamin 2">
+            <div class="card-body">
+              <h5 class="card-title">Ceviche Mixto 🐟 🍤 ó 🐟 🐙</h5>
+              <p class="card-text">Pescado blanco fresco del día,camarones, ó pulpo tu puedes elegir ; con ají criollo, cebollas moradas finamente cortadas en julianas, leche de tigra de la casa</p>
+              <label class="small fw-bold text-secondary mb-1 text-uppercase">Presentación</label>
+              <div class="mt-auto">
+                        <select class="form-select form-select-sm mb-2 price-select">
+                          <option value="10.00|Normal">Normal - $10.00</option>
+                          <option value="18.00|Familiar">Familiar - $18.00</option>
+                        </select>
+                        <button class="btn btn-add w-100" onclick="addToCart('Ceviche Mixto', this.parentElement.querySelector('.price-select'))">
+                            Agregar al pedido
+                        </button>
+                    </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="imagen/pinacolada.png" class="card-img-top" alt="Lamin 3">
+            <div class="card-body">
+              <h5 class="card-title">Ceviche Piña colada 🍍 🐟</h5>
+              <p class="card-text">Pescado blanco fresco del día, variedad de ají criollo, cebolla moradas finamente cortadas en julianas, leche de tigra de la casa</p>
+              <label class="small fw-bold text-secondary mb-1 text-uppercase">Presentación</label>
+              <div class="mt-auto">
+                        <select class="form-select form-select-sm mb-2 price-select">
+                          <option value="10.00|Normal">Normal - $10.00</option>
+                          <option value="18.00|Familiar">Familiar - $18.00</option>
+                        </select>
+                        <button class="btn btn-add w-100" onclick="addToCart('Ceviche Piña colada', this.parentElement.querySelector('.price-select'))">
+                            Agregar al pedido
+                        </button>
+                    </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="imagen/coctel-de-camaron.png" class="card-img-top" alt="Lamin 3">
+            <div class="card-body">
+              <h5 class="card-title">Coctel de camarones 🍤🍤🍤</h5>
+              <p class="card-text">Camarones cocidos, jugo de limón, salsa roja (tomate) pepino, pimentón y mucho sabor a mar.</p>
+              <label class="small fw-bold text-secondary mb-1 text-uppercase">Presentación</label>
+              <div class="mt-auto">
+                        <select class="form-select form-select-sm mb-2 price-select">
+                          <option value="10.00|Normal">Normal - $10.00</option>
+                          <option value="18.00|Familiar">Familiar - $18.00</option>
+                        </select>
+                        <button class="btn btn-add w-100" onclick="addToCart('Coctel de camarones', this.parentElement.querySelector('.price-select'))">
+                            Agregar al pedido
+                        </button>
+                    </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Platos Calientes (tarjetas dentro de esta pestaña) -->
+    <div class="tab-pane fade" id="calientes" role="tabpanel" aria-labelledby="calientes-tab">
+      <div class="row g-3">
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="imagen/coctel-de-camaron.png" class="card-img-top" alt="Lamin 3">
+            <div class="card-body">
+              <h5 class="card-title">Camarones al ajillo 🍤🧄🔥</h5>
+              <p class="card-text">Camarones cocidos, jugo de limón, salsa roja (tomate) pepino, pimentón y mucho sabor a mar.</p>
+              <label class="small fw-bold text-secondary mb-1 text-uppercase">Presentación</label>
+              <div class="mt-auto">
+                <select class="form-select form-select-sm mb-2 price-select">
+                  <option value="10.00|Normal">Normal - $10.00</option>
+                  <option value="18.00|Familiar">Familiar - $18.00</option>
+                </select>
+                <button class="btn btn-add w-100" onclick="addToCart('Camarones al ajillo', this.parentElement.querySelector('.price-select'))">
+                  Agregar al pedido
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="imagen/coctel-de-camaron.png" class="card-img-top" alt="Lamin 3">
+            <div class="card-body">
+              <h5 class="card-title">Camarones al ajillo 🍤🧄🔥</h5>
+              <p class="card-text">Camarones cocidos, jugo de limón, salsa roja (tomate) pepino, pimentón y mucho sabor a mar.</p>
+              <label class="small fw-bold text-secondary mb-1 text-uppercase">Presentación</label>
+              <div class="mt-auto">
+                <select class="form-select form-select-sm mb-2 price-select">
+                  <option value="10.00|Normal">Normal - $10.00</option>
+                  <option value="18.00|Familiar">Familiar - $18.00</option>
+                </select>
+                <button class="btn btn-add w-100" onclick="addToCart('Camarones al ajillo', this.parentElement.querySelector('.price-select'))">
+                  Agregar al pedido
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="imagen/coctel-de-camaron.png" class="card-img-top" alt="Caliente 2">
+            <div class="card-body">
+              <h5 class="card-title">Plato Caliente 2</h5>
+              <p class="card-text">Descripción corta del plato caliente.</p>
+              <a href="#" class="btn btn-primary">Ver</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="imagen/mixto.webp" class="card-img-top" alt="Caliente 3">
+            <div class="card-body">
+              <h5 class="card-title">Plato Caliente 3</h5>
+              <p class="card-text">Descripción corta del plato caliente.</p>
+              <a href="https://wa.me/584143396203?text=Hola!%20Quiero%20pedir%20un%20Ceviche%20Tradicional" class="btn btn-order py-2">
+                <img src="imagen/mdi_fire.svg" width="20" alt=""> ¡Lo quiero ya!
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Otros tabs (si necesitas) -->
+    <div class="tab-pane fade" id="link2" role="tabpanel" aria-labelledby="link2-tab">
+      <p class="mt-3">Contenido de Link 2.</p>
+    </div>
+  </div>
+  <main class="container my-5">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        </div>
+</main>
+<div class="text-center mb-5">
+    <h1 class="display-4 fw-bold">¡Los favoritos de la casa!</h1>
+    <p class="lead">Si es tu primera vez, te recomendamos empezar por aquí.</p>
+    <i class="bi bi-chevron-double-down fs-1" aria-hidden="true"></i>
+</div>
+  </div>
+  <!-- seccion desta -->
+ <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="imagen/hpinacamaron.webp" class="d-block w-100" alt="...">
+    
+    </div>
+    <div class="carousel-item">
+      <img src="imagen/hlamin2.webp" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div>
+<div class="container my-5" style="max-width: 450px;">
+    <div class="text-center mb-4">
+        <h2 class="display-5 fw-bold text-white">Sé parte de nuestro Club</h2>
+        <p class="text-muted">Consulta tus puntos y canjea premios</p>
+    </div>
+
+    <div class="search-section p-4 bg-dark border border-secondary rounded-4 shadow-sm">
+        <input type="email" id="emailConsulta" class="form-control mb-3" placeholder="Tu correo electrónico">
+        <button class="btn btn-primary w-100 fw-bold py-2" onclick="consultarPuntos()">VER MIS PUNTOS</button>
+    </div>
+
+    <div id="tarjetaDigital" class="card mt-4 border-0 shadow-lg" style="display: none; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);">
+        <div class="card-body p-4 text-white">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <small class="text-uppercase tracking-wider">Membresía Digital</small>
+                <i class="bi bi-star-fill text-warning"></i>
+            </div>
+            
+            <div class="text-center my-4">
+                <span id="puntosValor" class="display-2 fw-bold d-block">0</span>
+                <small class="opacity-75">PUNTOS ACUMULADOS</small>
+            </div>
+
+            <div class="progress bg-white bg-opacity-25 mb-3" style="height: 12px; border-radius: 10px;">
+                <div id="progresoFill" class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 0%"></div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <span id="nombreCliente" class="small fw-bold">Usuario</span>
+                <span class="badge bg-light text-primary">Nivel Oro</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="statusMessage" class="text-center mt-3"></div>
+
+    <div class="text-center mt-4 footer-actions">
+        <p class="text-secondary small">¿No estás registrado?</p>
+        <button class="btn btn-outline-info btn-sm px-4 fw-bold" onclick="window.location.href='registro.html'">
+            UNIRME AL CLUB
+        </button>
+    </div>
+</div>
+
+<script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyQ-UWf10nWhms8xJcXoQpTzvsUWsdUSsqA0-_wbO_YxhrarBL3aVjb-Glu57vUs-0Eng/exec'; // <--- PEGA TU URL DE GOOGLE AQUÍ
+
+    async function consultarPuntos() {
+        const email = document.getElementById('emailConsulta').value;
+        const status = document.getElementById('statusMessage');
+        const tarjeta = document.getElementById('tarjetaDigital');
+        const puntosV = document.getElementById('puntosValor');
+        const nombreC = document.getElementById('nombreCliente');
+        const barra = document.getElementById('progresoFill');
+        
+        if(!email) {
+            alert("Por favor, introduce tu correo.");
+            return;
+        }
+        
+        status.innerHTML = '<div class="spinner-border spinner-border-sm text-info"></div> Buscando...';
+        tarjeta.style.display = 'none';
+
+        try {
+            const res = await fetch(`${SCRIPT_URL}?email=${email}`);
+            const data = await res.json();
+            
+            if(data.error) {
+                status.innerHTML = '<span class="text-danger">Correo no registrado.</span>';
+            } else {
+                status.innerHTML = '';
+                tarjeta.style.display = 'block';
+                puntosV.innerText = data.puntos;
+                nombreC.innerText = data.nombre;
+                
+                // Meta de 1000 puntos para la barra
+                const porcentaje = Math.min((data.puntos / 1000) * 100, 100);
+                setTimeout(() => {
+                    barra.style.width = porcentaje + "%";
+                }, 200);
+            }
+        } catch (e) { 
+            status.innerHTML = '<span class="text-warning">Error al conectar con el servidor.</span>';
+        }
+    }
+</script>
+
+  <!-- boton flo (si necesitas) -->
+ <button class="btn-cart-float" id="floatBtn" data-bs-toggle="modal" data-bs-target="#cartModal">
+    Ver mi pedido <span class="badge-count" id="cartCount">0</span>
+</button>
+
+<div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title fw-bold">Tu Pedido</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="cartList">
+                    </div>
+                <hr>
+                <div class="d-flex justify-content-between fw-bold fs-5">
+                    <span>Total estimado:</span>
+                    <span id="cartTotal">$0.00</span>
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+              <div class="w-100 text-center mb-2">
+                <small class="text-muted">🏍️ El Delivery es adicional dependiendo de la zona</small>
+              </div>
+              <button class="btn btn-success w-100 py-3 fw-bold" onclick="sendToWhatsApp()">
+                Confirmar y Enviar a WhatsApp
+              </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bcarro -->
+ <script>
+    let cart = [];
+
+    function addToCart(name, selectEl) {
+      const select = (typeof selectEl === 'string') ? document.getElementById(selectEl) : selectEl;
+      const [price, size] = select.value.split('|');
+        
+        cart.push({
+            name: name,
+            price: parseFloat(price),
+            size: size
+        });
+
+        updateUI();
+    }
+
+    function removeItem(index) {
+        cart.splice(index, 1);
+        updateUI();
+    }
+
+    function updateUI() {
+        const count = document.getElementById('cartCount');
+        const floatBtn = document.getElementById('floatBtn');
+        const cartList = document.getElementById('cartList');
+        const cartTotal = document.getElementById('cartTotal');
+
+        count.innerText = cart.length;
+        floatBtn.style.display = cart.length > 0 ? 'block' : 'none';
+
+        // Renderizar lista en el modal
+        cartList.innerHTML = '';
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            total += item.price;
+            cartList.innerHTML += `
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <p class="mb-0 fw-bold">${item.name}</p>
+                        <small class="text-muted">${item.size} - $${item.price.toFixed(2)}</small>
+                    </div>
+                    <span class="delete-item" onclick="removeItem(${index})">Eliminar</span>
+                </div>
+            `;
+        });
+
+        cartTotal.innerText = `$${total.toFixed(2)}`;
+    }
+
+    function sendToWhatsApp() {
+        const phoneNumber = "584143396203";
+        let message = "¡Hola! Quisiera hacer el siguiente pedido:%0A%0A";
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            message += `✅ *${item.name}* (${item.size}) - $${item.price.toFixed(2)}%0A`;
+            total += item.price;
+        });
+
+        message += `%0A💰 *Total estimado: $${total.toFixed(2)}*%0A%0A_Por favor, confírmenme para proceder con el pago._`;
+
+        window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    }
+</script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Asegura inicialización del carrusel y auto-ciclo si el atributo data-bs-ride falla
+    (function() {
+      try {
+        const el = document.getElementById('carouselExampleCaptions');
+        if (!el) return;
+        // Si Bootstrap ya creó un carousel, esto lo reconfigura
+        if (window.bootstrap && window.bootstrap.Carousel) {
+          new bootstrap.Carousel(el, { interval: 4000, ride: 'carousel' });
+        } else {
+          // fallback simple: rotar manualmente cada X ms
+          let idx = 0;
+          const items = el.querySelectorAll('.carousel-item');
+          if (!items.length) return;
+          setInterval(() => {
+            items[idx].classList.remove('active');
+            idx = (idx + 1) % items.length;
+            items[idx].classList.add('active');
+          }, 4000);
+        }
+      } catch (e) {
+        console.error('Error inicializando carrusel:', e);
+      }
+    })();
+  </script>
+</body>
+</html>
