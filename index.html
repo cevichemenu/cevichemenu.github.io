@@ -251,7 +251,7 @@
 
     <div class="search-section p-4 bg-dark border border-secondary rounded-4 shadow-sm">
         <input type="email" id="emailConsulta" class="form-control mb-3" placeholder="Tu correo electrónico">
-        <button class="btn btn-primary w-100 fw-bold py-2" onclick="consultarPuntos()">VER MIS PUNTOS</button>
+        <button class="btn btn-primary w-100 fw-bold py-2" id="btnConsultarPuntos">VER MIS PUNTOS</button>
     </div>
 
     <div id="tarjetaDigital" class="card mt-4 border-0 shadow-lg" style="display: none; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);">
@@ -291,12 +291,16 @@
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwU6QSzSUKf3jysSMhRMc-SKLWQuFJWtzRcl7xZQRlZ_0XKm6Qtvd3m7wfS5KQrMg1_OQ/exec'; // <--- PEGA TU URL DE GOOGLE AQUÍ
 
     async function consultarPuntos() {
+        console.log('Función consultarPuntos llamada'); // Debug
+        
         const email = document.getElementById('emailConsulta').value;
         const status = document.getElementById('statusMessage');
         const tarjeta = document.getElementById('tarjetaDigital');
         const puntosV = document.getElementById('puntosValor');
         const nombreC = document.getElementById('nombreCliente');
         const barra = document.getElementById('progresoFill');
+        
+        console.log('Email a consultar:', email); // Debug
         
         if(!email) {
             alert("Por favor, introduce tu correo.");
@@ -307,8 +311,18 @@
         tarjeta.style.display = 'none';
 
         try {
+            console.log('URL completa:', `${SCRIPT_URL}?email=${email}`); // Debug
+            
             const res = await fetch(`${SCRIPT_URL}?email=${email}`);
+            console.log('Respuesta recibida:', res); // Debug
+            console.log('Status:', res.status); // Debug
+            
+            if (!res.ok) {
+                throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+            }
+            
             const data = await res.json();
+            console.log('Datos parseados:', data); // Debug
             
             if(data.error) {
                 status.innerHTML = '<span class="text-danger">Correo no registrado.</span>';
@@ -325,9 +339,21 @@
                 }, 200);
             }
         } catch (e) { 
-            status.innerHTML = '<span class="text-warning">Error al conectar con el servidor.</span>';
+            console.error('Error completo:', e); // Debug
+            status.innerHTML = `<span class="text-warning">Error al conectar con el servidor: ${e.message}</span>`;
         }
     }
+
+    // Agregar event listener al botón de consulta
+    document.addEventListener('DOMContentLoaded', function() {
+        const btnConsultar = document.getElementById('btnConsultarPuntos');
+        if (btnConsultar) {
+            btnConsultar.addEventListener('click', consultarPuntos);
+            console.log('Event listener agregado al botón de consulta'); // Debug
+        } else {
+            console.error('Botón de consulta no encontrado'); // Debug
+        }
+    });
 </script>
 
   <!-- boton flo (si necesitas) -->
