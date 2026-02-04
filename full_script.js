@@ -8,7 +8,7 @@ function doGet(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
 
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Hoja1");
+    const sheet = SpreadsheetApp.openById('1YapHpERmM9md4XGRzrp-82Z7XlrUXKKKUyht47mQe2I').getSheetByName("Hoja1");
     const data = sheet.getDataRange().getValues();
 
     for (let i = 1; i < data.length; i++) {
@@ -61,7 +61,7 @@ function doPost(e) {
 }
 
 function registrarUsuario(nombre, email, telefono) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Hoja1");
+  const sheet = SpreadsheetApp.openById('1YapHpERmM9md4XGRzrp-82Z7XlrUXKKKUyht47mQe2I').getSheetByName("Hoja1");
 
   // Verificar si el email ya existe
   const data = sheet.getDataRange().getValues();
@@ -82,7 +82,7 @@ function registrarUsuario(nombre, email, telefono) {
 }
 
 function sumarPuntos(email, puntos) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Hoja1");
+  const sheet = SpreadsheetApp.openById('1YapHpERmM9md4XGRzrp-82Z7XlrUXKKKUyht47mQe2I').getSheetByName("Hoja1");
   const data = sheet.getDataRange().getValues();
 
   for (let i = 1; i < data.length; i++) {
@@ -103,7 +103,7 @@ function sumarPuntos(email, puntos) {
 }
 
 function obtenerTodosLosUsuarios() {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Hoja1");
+  const sheet = SpreadsheetApp.openById('1YapHpERmM9md4XGRzrp-82Z7XlrUXKKKUyht47mQe2I').getSheetByName("Hoja1");
   const data = sheet.getDataRange().getValues();
 
   const usuarios = [];
