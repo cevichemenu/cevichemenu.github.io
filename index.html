@@ -313,7 +313,12 @@
         try {
             console.log('URL completa:', `${SCRIPT_URL}?email=${email}`); // Debug
             
-            const res = await fetch(`${SCRIPT_URL}?email=${email}`);
+            const res = await fetch(`${SCRIPT_URL}?email=${email}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                }
+            });
             console.log('Respuesta recibida:', res); // Debug
             console.log('Status:', res.status); // Debug
             
