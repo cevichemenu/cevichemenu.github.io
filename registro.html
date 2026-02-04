@@ -20,6 +20,9 @@
             border: 1px solid #444; 
             color: white; 
         }
+        .form-control::placeholder {
+            color: #ccc; /* Color más claro para los placeholders */
+        }
         .form-control:focus { 
             background-color: #333; 
             border-color: #ee9b00; 
@@ -42,23 +45,23 @@
 
     <div class="container py-5" style="max-width: 450px;">
         <div class="text-center mb-4">
-            <h2 class="fw-bold text-white">Únete al Club</h2>
-            <p class="text-muted">Regístrate y recibe <span class="text-naranja fw-bold">50 puntos gratis</span> 🎁</p>
+            <h2 class="fw-bold text-white">Únete al CevicheLove</h2>
+            <p class="text-white">Regístrate y recibe <span class="text-naranja fw-bold">50 puntos gratis</span> 🎁</p>
         </div>
 
         <div class="register-card">
             <div class="mb-3">
-                <label class="form-label small fw-bold text-secondary text-uppercase">Nombre Completo</label>
+                <label class="form-label small fw-bold text-light text-uppercase">Nombre Completo</label>
                 <input type="text" id="regNombre" class="form-control" placeholder="Ej: Juan Pérez">
             </div>
 
             <div class="mb-3">
-                <label class="form-label small fw-bold text-secondary text-uppercase">Correo Electrónico</label>
+                <label class="form-label small fw-bold text-light text-uppercase">Correo Electrónico</label>
                 <input type="email" id="regEmail" class="form-control" placeholder="ejemplo@correo.com">
             </div>
 
             <div class="mb-4">
-                <label class="form-label small fw-bold text-secondary text-uppercase">WhatsApp / Teléfono</label>
+                <label class="form-label small fw-bold text-light text-uppercase">WhatsApp / Teléfono</label>
                 <div class="input-group">
                     <span class="input-group-text bg-dark border-secondary text-white"><i class="bi bi-whatsapp"></i></span>
                     <input type="tel" id="regTel" class="form-control" placeholder="Ej: 04121234567">
@@ -81,7 +84,7 @@
 
     <script>
         // PEGA AQUÍ TU URL DE GOOGLE (La de la implementación /exec)
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyQ-UWf10nWhms8xJcXoQpTzvsUWsdUSsqA0-_wbO_YxhrarBL3aVjb-Glu57vUs-0Eng/exec'; // <--- PEGA TU URL DE GOOGLE AQUÍ
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxbshcYswWhFriGABgPTHR5Hk_xlAFZJx2FDujWYztxJZAR3AtFptwcqWCsPCfD4YlSnw/exec; // <--- PEGA TU URL DE GOOGLE AQUÍ
 
         async function registrarCliente() {
             const nombre = document.getElementById('regNombre').value;
