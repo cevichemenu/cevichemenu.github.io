@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-            <button class="btn btn-register w-100 shadow-sm" onclick="registrarCliente()">
+            <button class="btn btn-register w-100 shadow-sm" id="btnRegistro">
                 CREAR MI CUENTA
             </button>
         </div>
@@ -87,10 +87,14 @@
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwU6QSzSUKf3jysSMhRMc-SKLWQuFJWtzRcl7xZQRlZ_0XKm6Qtvd3m7wfS5KQrMg1_OQ/exec'; // <--- PEGA TU URL DE GOOGLE AQUÍ
 
         async function registrarCliente() {
+            console.log('Función registrarCliente llamada'); // Debug
+            
             const nombre = document.getElementById('regNombre').value;
             const email = document.getElementById('regEmail').value;
             const telefono = document.getElementById('regTel').value;
             const status = document.getElementById('statusRegistro');
+
+            console.log('Valores obtenidos:', { nombre, email, telefono }); // Debug
 
             // Validación básica
             if (!nombre || !email || !telefono) {
@@ -101,10 +105,15 @@
             status.innerHTML = '<div class="spinner-border spinner-border-sm text-warning"></div> Procesando registro...';
 
             try {
+                console.log('Enviando fetch a:', SCRIPT_URL); // Debug
+                
                 // Enviamos los datos al Código Maestro (doPost)
-                await fetch(SCRIPT_URL, {
+                const response = await fetch(SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
                     body: JSON.stringify({
                         accion: "registrar",
                         nombre: nombre,
@@ -113,7 +122,9 @@
                     })
                 });
 
-                // Si llegamos aquí, el envío fue exitoso
+                console.log('Fetch completado, response:', response); // Debug
+
+                // Con 'no-cors', no podemos leer la respuesta, pero si no hay error, asumimos éxito
                 status.innerHTML = `
                     <div class="alert alert-success border-0 shadow-sm">
                         <i class="bi bi-check-circle-fill"></i> ¡Registro Exitoso!<br>
@@ -126,9 +137,21 @@
                 document.getElementById('regTel').value = "";
 
             } catch (error) {
-                status.innerHTML = `<div class="alert alert-danger">Error de conexión con el servidor.</div>`;
+                console.error('Error en el registro:', error); // Debug
+                status.innerHTML = `<div class="alert alert-danger">Error de conexión con el servidor: ${error.message}</div>`;
             }
         }
+
+        // Agregar event listener al botón para asegurar que funcione
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnRegistro = document.getElementById('btnRegistro');
+            if (btnRegistro) {
+                btnRegistro.addEventListener('click', registrarCliente);
+                console.log('Event listener agregado al botón'); // Debug
+            } else {
+                console.error('Botón de registro no encontrado'); // Debug
+            }
+        });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.bundle.min.js"></script>
