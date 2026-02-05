@@ -3,157 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro - Club de Puntos</title>
+    <title>Registro - Club MDS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
         body { background-color: #121212; color: #eee; font-family: 'Segoe UI', sans-serif; }
-        .register-card { 
-            background: #1e1e1e; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
-            padding: 30px; 
-            border: 1px solid #333;
-        }
-        .form-control { 
-            background-color: #2b2b2b; 
-            border: 1px solid #444; 
-            color: white; 
-        }
-        .form-control::placeholder {
-            color: #ccc; /* Color más claro para los placeholders */
-        }
-        .form-control:focus { 
-            background-color: #333; 
-            border-color: #ee9b00; 
-            color: white; 
-            box-shadow: none; 
-        }
-        .btn-register { 
-            background-color: #ee9b00; 
-            color: white; 
-            border: none; 
-            font-weight: bold; 
-            padding: 12px; 
-            transition: 0.3s;
-        }
-        .btn-register:hover { background-color: #ca8300; transform: translateY(-2px); }
+        .register-card { background: #1e1e1e; border-radius: 20px; padding: 30px; border: 1px solid #333; }
+        .form-control { background-color: #2b2b2b; border: 1px solid #444; color: white; }
+        .form-control:focus { background-color: #333; border-color: #ee9b00; color: white; box-shadow: none; }
+        .btn-register { background-color: #ee9b00; color: white; border: none; font-weight: bold; padding: 12px; }
         .text-naranja { color: #ee9b00; }
     </style>
 </head>
 <body>
-
     <div class="container py-5" style="max-width: 450px;">
         <div class="text-center mb-4">
-            <h2 class="fw-bold text-white">Únete al CevicheLove</h2>
-            <p class="text-white">Regístrate y recibe <span class="text-naranja fw-bold">50 puntos gratis</span> 🎁</p>
+            <h2 class="fw-bold">Únete al Club Ceviche Lovers</h2>
+            <p>Regístrate y recibe <span class="text-naranja fw-bold">50 puntos gratis</span> 🎁</p>
         </div>
 
         <div class="register-card">
             <div class="mb-3">
-                <label for="regNombre" class="form-label small fw-bold text-light text-uppercase">Nombre Completo</label>
-                <input type="text" id="regNombre" name="regNombre" class="form-control" placeholder="Ej: Juan Pérez">
+                <label class="form-label small fw-bold text-uppercase">Nombre Completo</label>
+                <input type="text" id="regNombre" class="form-control" placeholder="Ej: Juan Pérez">
             </div>
-
-            <div class="mb-3">
-                <label for="regEmail" class="form-label small fw-bold text-light text-uppercase">Correo Electrónico</label>
-                <input type="email" id="regEmail" name="regEmail" class="form-control" placeholder="ejemplo@correo.com">
-            </div>
-
             <div class="mb-4">
-                <label for="regTel" class="form-label small fw-bold text-light text-uppercase">WhatsApp / Teléfono</label>
-                <div class="input-group">
-                    <span class="input-group-text bg-dark border-secondary text-white"><i class="bi bi-whatsapp"></i></span>
-                    <input type="tel" id="regTel" name="regTel" class="form-control" placeholder="Ej: 04121234567">
-                </div>
+                <label class="form-label small fw-bold text-uppercase">Correo Electrónico</label>
+                <input type="email" id="regEmail" class="form-control" placeholder="ejemplo@correo.com">
             </div>
-
-            <button class="btn btn-register w-100 shadow-sm" id="btnRegistro">
-                CREAR MI CUENTA
-            </button>
+            <button class="btn btn-register w-100" id="btnRegistro">CREAR MI CUENTA</button>
         </div>
-
         <div id="statusRegistro" class="mt-4 text-center"></div>
-
         <div class="text-center mt-4">
-            <a href="index.html" class="text-decoration-none text-muted small">
-                <i class="bi bi-arrow-left"></i> Volver al Menú
-            </a>
+            <a href="index.html" class="text-decoration-none text-white small"><i class="bi bi-arrow-left"></i> Volver al Menú</a>
         </div>
     </div>
 
     <script>
-        // PEGA AQUÍ TU URL DE GOOGLE (La de la implementación /exec)
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzPIQNB5Hzu59ZCH_4_UlZD-KF6ptgSG3D9hr8mzZZ6Cyq1RolAvZfEDRfHxvI8Bjq58g/exec'; // <--- PEGA TU URL DE GOOGLE AQUÍ
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzmjazbFI705yU5L3kI27I53BhWSqv8RJBAcsPtMoaSaWzf5ntriyDZWq_HquzX4HOC/exec'; // <--- PEGA TU URL /exec AQUÍ
 
         async function registrarCliente() {
-            console.log('Función registrarCliente llamada'); // Debug
-            
-            const nombre = document.getElementById('regNombre').value;
-            const email = document.getElementById('regEmail').value;
-            const telefono = document.getElementById('regTel').value;
+            const nombre = document.getElementById('regNombre').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
             const status = document.getElementById('statusRegistro');
 
-            console.log('Valores obtenidos:', { nombre, email, telefono }); // Debug
-
-            // Validación básica
-            if (!nombre || !email || !telefono) {
-                alert("Por favor, completa todos los campos.");
+            if (!nombre || !email) {
+                alert("Completa todos los campos");
                 return;
             }
 
-            status.innerHTML = '<div class="spinner-border spinner-border-sm text-warning"></div> Procesando registro...';
+            status.innerHTML = "Procesando...";
 
             try {
-                console.log('Enviando fetch a:', SCRIPT_URL); // Debug
-                
-                // Enviamos los datos al Código Maestro (doPost)
-                const response = await fetch(SCRIPT_URL, {
+                // Usamos POST con modo 'no-cors' para máxima compatibilidad
+                await fetch(SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        accion: "registrar",
-                        nombre: nombre,
-                        email: email,
-                        telefono: telefono
-                    })
+                    body: JSON.stringify({ accion: "registrar", nombre, email })
                 });
 
-                console.log('Fetch completado, response:', response); // Debug
-
-                // Con 'no-cors', no podemos leer la respuesta, pero si no hay error, asumimos éxito
-                status.innerHTML = `
-                    <div class="alert alert-success border-0 shadow-sm">
-                        <i class="bi bi-check-circle-fill"></i> ¡Registro Exitoso!<br>
-                        Ya puedes ver tus puntos en el menú.
-                    </div>`;
-
-                // Limpiamos los campos
-                document.getElementById('regNombre').value = "";
-                document.getElementById('regEmail').value = "";
-                document.getElementById('regTel').value = "";
-
-            } catch (error) {
-                console.error('Error en el registro:', error); // Debug
-                status.innerHTML = `<div class="alert alert-danger">Error de conexión con el servidor: ${error.message}</div>`;
+                status.innerHTML = `<div class="alert alert-success">¡Registro Exitoso! Redirigiendo...</div>`;
+                setTimeout(() => window.location.href = 'index.html', 2500);
+            } catch (e) {
+                status.innerHTML = "Error de conexión.";
             }
         }
 
-        // Agregar event listener al botón para asegurar que funcione
-        document.addEventListener('DOMContentLoaded', function() {
-            const btnRegistro = document.getElementById('btnRegistro');
-            if (btnRegistro) {
-                btnRegistro.addEventListener('click', registrarCliente);
-                console.log('Event listener agregado al botón'); // Debug
-            } else {
-                console.error('Botón de registro no encontrado'); // Debug
-            }
-        });
+        document.getElementById('btnRegistro').addEventListener('click', registrarCliente);
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

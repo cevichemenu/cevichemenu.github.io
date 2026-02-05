@@ -225,7 +225,7 @@
 <div class="text-center mb-5">
     <h1 class="display-4 fw-bold">¡Los favoritos de la casa!</h1>
     <p class="lead">Si es tu primera vez, te recomendamos empezar por aquí.</p>
-    <i class="bi bi-chevron-double-down fs-1" aria-hidden="true"></i>
+    <i class="bi bi-chevron-double-down fs-1 flecha-animada text-white" aria-hidden="true"></i>
 </div>
   </div>
   <!-- seccion desta -->
@@ -239,14 +239,17 @@
       <img src="imagen/hlamin2.webp" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
+      <img src="imagen/hpinacamaron.webp" class="d-block w-100" alt="...">
     </div>
   </div>
 </div>
 <div class="container my-5" style="max-width: 450px;">
     <div class="text-center mb-4">
-        <h2 class="display-5 fw-bold text-white">Sé parte de nuestro Club</h2>
-        <p class="text-muted">Consulta tus puntos y canjea premios</p>
+        <h2 class="display-5 fw-bold text-white">¡Únete al Club Ceviche Lovers!</h2>
+        <p class="text-warning">¡Tu pasión por el ceviche ahora tiene premio!</p>
+        <p class="text-white text-opacity-50 small">Cuando alcances los 1,200 puntos, podrás canjearlos por un Ceviche Tradicional. </p>
+       
+        
     </div>
 
     <div class="search-section p-4 bg-dark border border-secondary rounded-4 shadow-sm">
@@ -273,7 +276,7 @@
 
             <div class="d-flex justify-content-between align-items-center mt-3">
                 <span id="nombreCliente" class="small fw-bold">Usuario</span>
-                <span class="badge bg-light text-primary">Nivel Oro</span>
+                <span class="badge bg-light text-primary">Ceviche Lovers</span>
             </div>
         </div>
     </div>
@@ -287,9 +290,39 @@
         </button>
     </div>
 </div>
+<div class="container mt-4">
+  <h3 class="text-white mb-3">¿Cómo acumular puntos?</h3>
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-white border-secondary">
+      Por cada ceviche personal
+      <span class="badge bg-primary rounded-pill">100 pts</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-white border-secondary">
+      Por cada 1kg de puro sabor
+      <span class="badge bg-primary rounded-pill">200 pts</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-white border-secondary">
+      Solo por registrarte
+      <span class="badge bg-success rounded-pill">50 pts</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-white border-secondary">
+      Foto y etiqueta en Instagram
+      <span class="badge bg-info rounded-pill">50 pts</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center bg-warning text-dark fw-bold">
+      ¡CANJE: Ceviche Tradicional Gratis!
+      <span>1,200 pts</span>
+    </li>
+  </ul>
+</div>
+<div class="container mt-4">
+   <p>© 2026 La Cevicheria Express. Todos los derechos reservados</p>
+</div>
+
+
 
 <script>
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzPIQNB5Hzu59ZCH_4_UlZD-KF6ptgSG3D9hr8mzZZ6Cyq1RolAvZfEDRfHxvI8Bjq58g/exec'; // <--- PEGA TU URL DE GOOGLE AQUÍ
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzmjazbFI705yU5L3kI27I53BhWSqv8RJBAcsPtMoaSaWzf5ntriyDZWq_HquzX4HOC/exec'; // <--- PEGA TU URL DE GOOGLE AQUÍ
 </script>
 
   <!-- boton flo (si necesitas) -->
@@ -390,6 +423,46 @@
 
         window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
     }
+
+    // Función para consultar puntos
+    async function consultarPuntos() {
+    const email = document.getElementById('emailConsulta').value.trim().toLowerCase();
+    const status = document.getElementById('statusMessage');
+    const tarjeta = document.getElementById('tarjetaDigital');
+
+    if (!email) return alert("Ingresa tu correo");
+
+    status.innerHTML = "Buscando...";
+    
+    try {
+        // Usamos una URL con parámetros (más estable para Google)
+        const urlConsulta = `${SCRIPT_URL}?accion=consultar&email=${encodeURIComponent(email)}`;
+        
+        const response = await fetch(urlConsulta);
+        const data = await response.json();
+
+        if (data.success) {
+            document.getElementById('puntosValor').innerText = data.cliente.puntos;
+            document.getElementById('nombreCliente').innerText = data.cliente.nombre;
+            
+            const progreso = Math.min((data.cliente.puntos / 500) * 100, 100);
+            document.getElementById('progresoFill').style.width = progreso + '%';
+            
+            tarjeta.style.display = 'block';
+            status.innerHTML = "";
+        } else {
+            status.innerHTML = `<div class="alert alert-warning">${data.message}</div>`;
+        }
+    } catch (error) {
+        status.innerHTML = "Error de conexión. Revisa la URL del script.";
+        console.error(error);
+    }
+}
+    
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('btnConsultarPuntos').addEventListener('click', consultarPuntos);
+    });
 </script>
 
 

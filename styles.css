@@ -64,3 +64,20 @@ h1, h2, h3, p {
     height: auto;  /* Evita que la imagen se deforme */
     display: block;
 }
+.flecha-animada {
+  /* Nombre de la animación, duración 2 segundos, infinita */
+  animation: rebote 2s infinite;
+  display: inline-block; /* Importante para que la transformación funcione */
+}
+
+@keyframes rebote {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0); /* Posición inicial */
+  }
+  40% {
+    transform: translateY(15px); /* Baja 15 pixeles */
+  }
+  60% {
+    transform: translateY(7px); /* Baja un poco menos para efecto rebote */
+  }
+}
