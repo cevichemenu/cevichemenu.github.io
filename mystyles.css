@@ -1,0 +1,309 @@
+:root {
+    --bg-color: #0b0f19;
+    --card-bg: rgba(22, 28, 45, 0.6);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --text-main: #f0f4f8;
+    --text-muted: #9ba3af;
+    --accent-color: hsl(34, 100%, 50%);
+    --accent-secondary: #ff0055;
+    --font-heading: 'Outfit', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image: linear-gradient(rgba(11, 15, 25, 0.85), rgba(11, 15, 25, 0.85)), url('imag/fondo.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-main);
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    padding-bottom: 3rem;
+}
+
+.main-logo {
+    max-width: 180px;
+    height: auto;
+    margin: 0 auto 1.5rem;
+    display: block;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 204, 0.5));
+}
+
+/* Background glows */
+.background-effects {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.15;
+    animation: drift 10s infinite alternate ease-in-out;
+}
+
+.glow-1 {
+    width: 300px;
+    height: 300px;
+    background: var(--accent-color);
+    top: -100px;
+    left: -100px;
+}
+
+.glow-2 {
+    width: 400px;
+    height: 400px;
+    background: var(--accent-secondary);
+    bottom: -150px;
+    right: -150px;
+    animation-delay: -5s;
+}
+
+@keyframes drift {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(50px, 50px) scale(1.1);
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 4rem 1rem 3rem;
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+/* Menu Grid */
+.menu-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Cards */
+.card {
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 1.5rem;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 255, 204, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 255, 204, 0.1);
+}
+
+.card-image-box {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card:hover .card-image {
+    transform: scale(1.05);
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(11, 15, 25, 0.5), transparent);
+    opacity: 0.1;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    flex-grow: 1;
+}
+
+.card-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+}
+
+.card-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+/* Sizes Pill Box */
+.sizes-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.size-pill {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.size-pill:hover {
+    background: rgba(0, 255, 204, 0.05);
+    border-color: rgba(0, 255, 204, 0.3);
+}
+
+.size-name {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.size-weight {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--accent-color);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 4rem;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+}
+
+/* Animations */
+.slide-down {
+    animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ofertas Especiales */
+.oferta-especial {
+    border-color: #ffcc00;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+    animation: pulsoOferta 2s infinite;
+}
+
+@keyframes pulsoOferta {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 204, 0, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(255, 204, 0, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(255, 204, 0, 0.4);
+    }
+}
+
+.badge-oferta {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: linear-gradient(135deg, #ff0055, #ff6600);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(255, 0, 85, 0.3);
+}
