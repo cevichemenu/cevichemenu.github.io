@@ -26,6 +26,7 @@ async function cargarMenu() {
                 <div class="card-content">
                     <h2 class="card-title">${item.nombre}</h2>
                     <p class="card-desc">${item.descripcion}</p>
+                    <span class="presentation-label">Presentación</span>
                     <div class="sizes-box">
                         <div class="size-pill">
                             <span class="size-name">Personal</span>
