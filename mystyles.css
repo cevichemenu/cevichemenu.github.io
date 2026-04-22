@@ -200,6 +200,16 @@ body {
     flex-grow: 1;
 }
 
+.presentation-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    opacity: 0.7;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
 /* Sizes Pill Box */
 .sizes-box {
     display: flex;
@@ -263,6 +273,18 @@ body {
 .instagram-link:hover {
     color: var(--accent-color);
     transform: translateY(-2px);
+}
+
+.designer-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.designer-link:hover {
+    color: #fff;
+    text-shadow: 0 0 8px var(--accent-color);
 }
 
 /* Animations */
